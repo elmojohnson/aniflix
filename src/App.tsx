@@ -8,6 +8,7 @@ import Navbar from "./components/navigations/Navbar";
 import Home from "./pages/Home";
 import Anime from "./pages/Anime";
 import ErrorPage from "./pages/ErrorPage";
+import Search from "./pages/Search";
 
 // Anime nested pages
 import About from "./pages/anime/About";
@@ -41,7 +42,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <div className="mt-10">
+      <div className="mt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/anime/:id" element={<Anime />}>
@@ -52,6 +53,7 @@ const App = () => {
             <Route path="recommendations" element={<Recommendations />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
+          <Route path="/search" element={<Search />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
 

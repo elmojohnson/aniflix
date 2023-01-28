@@ -15,10 +15,7 @@ interface Button {
 
 const Pagination: React.FC<Pagination> = (page) => {
   return (
-    <div className="flex items-center justify-between font-semibold mt-4">
-      <span className="text-muted">
-        Page {page.current} of {page.total.toLocaleString("en-US")}
-      </span>
+    <div className="flex items-center justify-end font-semibold mt-4">
       <div className="flex items-center space-x-3">
         {page.current > 1 && (
           <Button handleClick={page.handlePrev} label="Previous" />

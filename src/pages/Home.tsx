@@ -14,7 +14,7 @@ const Home = () => {
   } = useAnimeList();
 
   return (
-    <div className="wrapper py-4">
+    <div className="wrapper pb-4">
       <h1 className="text-2xl font-bold text-white mb-4">Anime List</h1>
       <AnimeList list={list} isLoading={isLoading} />
       {!isLoading && (
