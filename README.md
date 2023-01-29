@@ -1,5 +1,6 @@
 # Aniflix
 A web application for browsing anime, episodes, characters, recommendations, and reviews.
+* https://aniflix-app.netlify.app/
 
 ## Features
 * Browse and search anime
