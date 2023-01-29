@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface Pagination {
   total: number;
@@ -28,12 +29,15 @@ const Pagination: React.FC<Pagination> = (page) => {
 
 const Button: React.FC<Button> = (button) => {
   return (
-    <button
+    <motion.button
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="bg-primary px-3 py-1 rounded-sm hover:brightness-75 flex space-x-1 items-center justify-between"
       onClick={button.handleClick}
     >
       <span>{button.label}</span>
-    </button>
+    </motion.button>
   );
 };
 
