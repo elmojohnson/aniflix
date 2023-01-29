@@ -14,7 +14,7 @@
     }
     
     .navbar {
-        @apply backdrop-blur-xl py-2 text-white fixed w-full top-0 z-50 shadow-xl
+        @apply bg-gray-800 py-2 text-white fixed w-full top-0 z-50 shadow-xl
     }
 }
 
