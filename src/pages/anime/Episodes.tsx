@@ -39,7 +39,8 @@ const Episodes = () => {
             {hasNextPage && (
               <button
                 onClick={loadMoreEpisodes}
-                className="w-full px-3 py-2 hover:brightness-75 bg-primary text-white font-semibold text-center rounded-sm"
+                className="w-full px-3 py-2 hover:brightness-75 bg-primary text-white font-semibold text-center rounded-sm disabled:bg-muted disabled:animate-pulse"
+                disabled={isLoadingMore}
               >
                 {isLoadingMore ? "Loading..." : "Load more"}
               </button>
