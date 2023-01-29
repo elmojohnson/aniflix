@@ -19,8 +19,7 @@ const Search = () => {
   } = useSearchAnime();
 
   return (
-    <div className="wrapper pb-4 flex flex-col space-y-4">
-      <h1 className="font-bold text-2xl text-white">Search</h1>
+    <div className="wrapper pb-4 flex flex-col space-y-8">
       <SearchBar
         query={query}
         handleInputChange={handleInputChange}
