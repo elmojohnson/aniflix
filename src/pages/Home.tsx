@@ -1,7 +1,6 @@
 import useAnimeList from "../hooks/useAnimeList";
 import Pagination from "../components/navigations/Pagination";
 import AnimeList from "../components/lists/AnimeList";
-import HeroCarousel from "../components/lists/HeroCarousel";
 
 const Home = () => {
   const {
@@ -16,7 +15,6 @@ const Home = () => {
 
   return (
     <div>
-      <HeroCarousel />
       <div className="wrapper pb-4">
         <h1 className="text-2xl font-bold text-white mb-4">Anime List</h1>
         <AnimeList list={list} isLoading={isLoading} />
