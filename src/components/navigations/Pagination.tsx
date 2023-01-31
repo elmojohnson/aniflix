@@ -16,11 +16,14 @@ interface Button {
 
 const Pagination: React.FC<Pagination> = (page) => {
   return (
-    <div className="flex items-center justify-center space-x-3 mt-8">
-      {page.current > 1 && (
-        <Button handleClick={page.handlePrev} label="Previous" />
-      )}
-      {page.hasNext && <Button handleClick={page.handleNext} label="Next" />}
+    <div className="mt-8">
+      <h5 className="text-muted mb-4">Page {page.current} / {page.total}</h5>
+      <div className="flex items-center justify-center space-x-3">
+        {page.current > 1 && (
+          <Button handleClick={page.handlePrev} label="Previous" />
+        )}
+        {page.hasNext && <Button handleClick={page.handleNext} label="Next" />}
+      </div>
     </div>
   );
 };
@@ -31,7 +34,7 @@ const Button: React.FC<Button> = (button) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-primary px-3 py-1 rounded-sm hover:brightness-75 font-semibold"
+      className="bg-primary px-3 py-1 rounded-sm hover:brightness-75 font-semibold w-full"
       onClick={button.handleClick}
     >
       <span>{button.label}</span>

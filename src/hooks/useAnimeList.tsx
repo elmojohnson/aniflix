@@ -18,7 +18,7 @@ const useAnimeList = () => {
       setLoading(true);
       const result = await axios.get(`https://api.jikan.moe/v4/top/anime?page=${currentPage}&limit=20`);
       
-      total === 0 && setTotal(Math.round(result.data.pagination.items.total / 20 - currentPage));
+      total === 0 && setTotal(result.data.pagination.last_visible_page);
       setList(result.data.data);
       setHasNextPage(result.data.pagination.has_next_page);
     } catch (error) {
