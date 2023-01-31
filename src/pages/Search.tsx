@@ -8,6 +8,7 @@ import useSearchAnime from "../hooks/useSearchAnime";
 const Search = () => {
   const {
     searches,
+    handleRecentItem,
     query,
     isSearching,
     handleInputChange,
@@ -28,7 +29,7 @@ const Search = () => {
         handleSearch={handleSearch}
       />
       <AnimatePresence>
-        {searches.length !== 0 && <RecentSearches searches={searches} />}
+        {searches.length !== 0 && <RecentSearches searches={searches} handleRecentItem={handleRecentItem} />}
       </AnimatePresence>
       <AnimeList list={list} isLoading={isSearching} />
       <AnimatePresence>

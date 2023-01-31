@@ -1,7 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const RecentSearches: React.FC<{ searches: [] }> = ({ searches }) => {
+const RecentSearches: React.FC<{
+  searches: [];
+  handleRecentItem: (value?: any) => void;
+}> = ({ searches, handleRecentItem }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -16,8 +19,10 @@ const RecentSearches: React.FC<{ searches: [] }> = ({ searches }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              whileTap={{scale: 0.92}}
               key={i}
               className="bg-muted px-3 py-1 rounded-full hover:brightness-75 whitespace-nowrap"
+              onClick={() => handleRecentItem(s)}
             >
               {s}
             </motion.button>

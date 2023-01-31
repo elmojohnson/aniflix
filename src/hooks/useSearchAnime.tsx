@@ -22,17 +22,23 @@ const useSearchAnime = () => {
   const handleInputChange = (e: any) => setQuery(e.target.value);
 
   // Search
-  const handleSearch = async () => {
+  const handleSearch = async (value?: any) => {
+    let userQuery = query;
+
+    if(value) {
+      setQuery(value);
+      userQuery = value;
+    }
+
     // Add to recent searches
     let recent = JSON.parse(localStorage.getItem("recent_searches") || "[]");
-    if(!recent.includes(query)) {
-      localStorage.setItem("recent_searches", JSON.stringify([query, ...recent]));
-      // setSearches(recent.unshift(query));
+    if(!recent.includes(userQuery)) {
+      localStorage.setItem("recent_searches", JSON.stringify([userQuery, ...recent]));
     }
 
     try {
       setSearching(true);
-      const result = await axios.get(`https://api.jikan.moe/v4/anime?q=${query}&page=${currentPage}&limit=20`);
+      const result = await axios.get(`https://api.jikan.moe/v4/anime?q=${userQuery}&page=${currentPage}&limit=20`);
 
       setList(result.data.data);
       total === 0 && setTotal(result.data.pagination.last_visible_page);
@@ -56,6 +62,15 @@ const useSearchAnime = () => {
     currentPage !== 1 && setCurrentPage(currentPage - 1);
   }
 
+  // On click recent search item
+  const handleRecentItem = (value?: any) => {
+    setList([]);
+    setCurrentPage(1);
+    setTotal(0);
+    setHasNextPage(false);
+    handleSearch(value);
+  }
+
   // Search on first load and changed current page
   useEffect(() => {
     query && handleSearch();
@@ -66,7 +81,7 @@ const useSearchAnime = () => {
     setSearches(JSON.parse(localStorage.getItem("recent_searches") || "[]"))
   }, [list]) 
 
-  return { searches, query, isSearching, handleInputChange, handleSearch, list, total, currentPage, hasNextPage, handlePrevPage, handleNextPage };
+  return { searches, handleRecentItem, query, isSearching, handleInputChange, handleSearch, list, total, currentPage, hasNextPage, handlePrevPage, handleNextPage };
 };
 
 export default useSearchAnime;
