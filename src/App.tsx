@@ -42,7 +42,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <div className="mt-20 pb-12">
+      <div className="mt-12 pb-12">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/anime/:id" element={<Anime />}>
