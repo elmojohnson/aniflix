@@ -17,7 +17,7 @@ interface Button {
 const Pagination: React.FC<Pagination> = (page) => {
   return (
     <div className="mt-8">
-      <h5 className="text-muted mb-4">Page {page.current} / {page.total}</h5>
+      {page.total !== 0 && <h5 className="text-muted mb-4">Page {page.current} / {page.total}</h5>}
       <div className="flex items-center justify-center space-x-3">
         {page.current > 1 && (
           <Button handleClick={page.handlePrev} label="Previous" />
