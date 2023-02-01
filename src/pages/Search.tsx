@@ -29,12 +29,18 @@ const Search = () => {
         handleSearch={handleSearch}
       />
       <AnimatePresence>
-        {searches.length !== 0 && <RecentSearches searches={searches} handleRecentItem={handleRecentItem} />}
+        {searches.length !== 0 && (
+          <RecentSearches
+            searches={searches}
+            handleRecentItem={handleRecentItem}
+          />
+        )}
       </AnimatePresence>
       <AnimeList list={list} isLoading={isSearching} />
       <AnimatePresence>
         {!isSearching && (
           <Pagination
+            resultCount={list.length}
             total={total}
             current={currentPage}
             hasNext={hasNextPage}
