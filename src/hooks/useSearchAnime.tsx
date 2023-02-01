@@ -41,6 +41,8 @@ const useSearchAnime = () => {
       setList(result.data.data);
       total === 0 && setTotal(result.data.pagination.last_visible_page);
       setHasNextPage(result.data.pagination.has_next_page);
+
+      setRecentQuery("")
     } catch (error) {
       console.error(error);
     } finally {
@@ -77,7 +79,10 @@ const useSearchAnime = () => {
 
   // When recent search item is clicked
   useEffect(() => {
-    recentQuery && handleSearch();
+    if(recentQuery) {
+      setQuery(recentQuery);
+      handleSearch();
+    }
   }, [recentQuery]); 
 
   // Load recent searches
