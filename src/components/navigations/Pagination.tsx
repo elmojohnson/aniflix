@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 interface Pagination {
+  resultCount: number;
   total: number;
   current: number;
   handlePrev: () => void;

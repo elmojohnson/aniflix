@@ -20,6 +20,7 @@ const Home = () => {
         <AnimeList list={list} isLoading={isLoading} />
         {!isLoading && (
           <Pagination
+            resultCount={list.length}
             total={total}
             current={currentPage}
             hasNext={hasNextPage}

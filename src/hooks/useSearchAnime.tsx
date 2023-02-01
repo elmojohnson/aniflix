@@ -5,6 +5,7 @@ import { Anime } from "../interface";
 const useSearchAnime = () => {
   // Recent searches
   const [searches, setSearches] = useState<[]>([]);
+  const [recentQuery, setRecentQuery] = useState<string>("");
 
   // Query
   const [query, setQuery] = useState<string>("");
@@ -22,23 +23,20 @@ const useSearchAnime = () => {
   const handleInputChange = (e: any) => setQuery(e.target.value);
 
   // Search
-  const handleSearch = async (value?: any) => {
-    let userQuery = query;
-
-    if(value) {
-      setQuery(value);
-      userQuery = value;
+  const handleSearch = async () => {
+    if(!query) {
+      return
     }
-
     // Add to recent searches
     let recent = JSON.parse(localStorage.getItem("recent_searches") || "[]");
-    if(!recent.includes(userQuery)) {
-      localStorage.setItem("recent_searches", JSON.stringify([userQuery, ...recent]));
+    if(!recent.includes(query)) {
+      localStorage.setItem("recent_searches", JSON.stringify([query, ...recent]));
     }
 
+    // Search anime
     try {
       setSearching(true);
-      const result = await axios.get(`https://api.jikan.moe/v4/anime?q=${userQuery}&page=${currentPage}&limit=20`);
+      const result = await axios.get(`https://api.jikan.moe/v4/anime?q=${query}&page=${currentPage}&limit=20`);
 
       setList(result.data.data);
       total === 0 && setTotal(result.data.pagination.last_visible_page);
@@ -68,13 +66,19 @@ const useSearchAnime = () => {
     setCurrentPage(1);
     setTotal(0);
     setHasNextPage(false);
-    handleSearch(value);
+    setRecentQuery(value);
+    setQuery(value);
   }
 
   // Search on first load and changed current page
   useEffect(() => {
     query && handleSearch();
-  }, [currentPage]);
+  }, [currentPage]);  
+
+  // When recent search item is clicked
+  useEffect(() => {
+    recentQuery && handleSearch();
+  }, [recentQuery]); 
 
   // Load recent searches
   useEffect(() => {
